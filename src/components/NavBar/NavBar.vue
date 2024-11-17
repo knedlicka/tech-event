@@ -1,5 +1,5 @@
 <template>
-    <nav class="container">
+    <nav class="navbar-container">
         <div class="nav-half">
             <div class="logo">
                 LOGO
@@ -60,7 +60,7 @@ export default {
 
 
 <style>
-.container {
+.navbar-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
