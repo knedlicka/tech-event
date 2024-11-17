@@ -88,10 +88,28 @@ export default {
     text-transform: capitalize;
 }
 
+.menu-link-container a {
+    text-decoration: none;
+    color: white;
+}
+
+.menu-link-container a:hover {
+    font-weight: 700;
+}
+
 .expanded-menu-link-container {
     text-transform: capitalize;
     width: 100%;
     border-top: 1px solid white;
-    padding: 8px;
+    padding: 16px;
+}
+
+.expanded-menu-link-container a {
+    text-decoration: none;
+    color: white;
+}
+
+.expanded-menu-link-container a:hover {
+    font-weight: 700;
 }
 </style>
