@@ -64,9 +64,15 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 16px;
+    padding: 32px;
     color: white;
     background: rgb(30, 25, 25);
+}
+
+.nav-half {
+    display: flex;
+    gap: 16px;
+    align-items: center;
 }
 
 .hamburger-menu button {
