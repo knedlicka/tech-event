@@ -64,9 +64,10 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 32px;
+    padding: 12px;
     color: white;
     background: rgb(30, 25, 25);
+    height: 30px;
 }
 
 .nav-half {

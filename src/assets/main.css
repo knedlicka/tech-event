@@ -1,1 +1,6 @@
 @import './base.css';
+
+.heading-section {
+  font-size: 32px;
+  font-weight: 700;
+}
