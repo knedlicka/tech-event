@@ -22,5 +22,6 @@ export default {
 
 .main-button:hover {
     box-shadow: none;
+    transform: translate(1px, 1px);
 }
 </style>

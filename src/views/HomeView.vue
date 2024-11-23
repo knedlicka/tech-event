@@ -64,12 +64,13 @@ export default {
 <style>
 .home-container {
   display: flex;
+  flex: 1;
   flex-direction: column;
   align-items: center;
   position: relative;
   background: url('../assets/images/tech-event.jpeg') center/cover no-repeat;
   z-index: 1;
-  min-height: 100vh;
+  height: 100%;
 }
 
 .home-container::before {

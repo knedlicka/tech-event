@@ -12,7 +12,7 @@
 <style>
 .footer-container {
     width: 100%;
-    min-height: 150px;
+    height: 150px;
     display: flex;
     flex-direction: column;
     gap: 4px;

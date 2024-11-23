@@ -23,29 +23,30 @@ export default {
 
 <template>
     <main class="register-container">
-        <div class="register-left-part">
-            <div class="register-form-with-header-container">
-                <div class="heading-section">Register</div>
-                <div>
-                    Already have an account? <RouterLink :to="routerPathInfo.login.path">Log in</RouterLink>.
+        <div class="register-inner-container">
+            <div class="register-left-part">
+                <div class="register-form-with-header-container">
+                    <div class="heading-section">Register</div>
+                    <div>
+                        Already have an account? <RouterLink :to="routerPathInfo.login.path">Log in</RouterLink>.
+                    </div>
+                    <form class="register-form">
+                        <input required type="text" name="full-name" v-model="this.fullName" placeholder="Full Name"
+                            class="text-input" />
+                        <select required v-model="this.role" class="select-input">
+                            <option disabled value="">Select role</option>
+                            <option value="organizer">Organizer</option>
+                            <option value="visitor">Visitor</option>
+                        </select>
+                        <input required type="email" name="email" v-model="this.email" placeholder="Email"
+                            class="text-input" />
+                        <input required type="password" v-model="this.password" placeholder="Password"
+                            class="text-input" />
+                        <MainButton @click.prevent="this.handleRegister" label="Register" />
+                    </form>
                 </div>
-                <form class="register-form">
-                    <input required type="text" name="full-name" v-model="this.fullName" placeholder="Full Name"
-                        class="text-input" />
-                    <select required v-model="this.role" class="select-input">
-                        <option disabled value="">Select role</option>
-                        <option value="organizer">Organizer</option>
-                        <option value="visitor">Visitor</option>
-                    </select>
-                    <input required type="email" name="email" v-model="this.email" placeholder="Email"
-                        class="text-input" />
-                    <input required type="password" v-model="this.password" placeholder="Password" class="text-input" />
-                    <MainButton @click.prevent="this.handleRegister" label="Register" />
-                </form>
             </div>
-        </div>
-        <div class="register-right-part">
-
+            <div class="register-right-part"></div>
         </div>
     </main>
 </template>
@@ -53,10 +54,15 @@ export default {
 <style>
 .register-container {
     display: flex;
+    flex-direction: column;
+    flex: 1;
     width: 100%;
-    height: 100%;
-    height: calc(100vh - 54px);
-    overflow-y: hidden;
+}
+
+.register-inner-container {
+    display: flex;
+    flex: 1;
+    width: 100%;
 }
 
 .register-left-part {
@@ -64,7 +70,6 @@ export default {
     justify-content: center;
     align-items: center;
     width: 50%;
-    height: 100%;
 }
 
 .register-form-with-header-container {
@@ -75,7 +80,6 @@ export default {
 
 .register-right-part {
     width: 50%;
-    height: 100%;
     background: url('../assets/images/tech-event-registration.jpeg') center/cover no-repeat;
 }
 
