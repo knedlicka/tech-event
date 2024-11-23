@@ -1,7 +1,45 @@
 <script>
+import { routePaths } from '@/router';
 import CalendarIcon from '../assets/images/svg/calendar.svg';
+import ClickableCard from '@/components/clickable-card/ClickableCard.vue';
+
 export default {
-  components: { CalendarIcon }
+  components: { CalendarIcon, ClickableCard },
+  data() {
+    return {
+      cards: [
+        {
+          label: "Register",
+          path: routePaths.register.path,
+        },
+        {
+          label: "Program",
+          path: routePaths.program.path,
+        },
+        {
+          label: "Program",
+          path: routePaths.program.path,
+        },
+        {
+          label: "Program",
+          path: routePaths.program.path,
+        },
+        {
+          label: "Program",
+          path: routePaths.program.path,
+        },
+        {
+          label: "Program",
+          path: routePaths.program.path,
+        },
+      ]
+    }
+  },
+  methods: {
+    handleCardClick(card) {
+      this.$router.push(card.path);
+    },
+  },
 }
 </script>
 
@@ -16,7 +54,10 @@ export default {
         <span>January 28th - February 2nd</span>
       </span>
     </div>
-    <!-- <ProgramTiles /> TODO add tiles such as program, about, speakers, registration etc to homepage. Add cool 3d effects to them or smth -->
+    <div class="cards-container">
+      <ClickableCard v-for="(card, index) in this.cards" :label="card.label" :key="`card-${index}`"
+        @click="() => handleCardClick(card)" />
+    </div>
   </main>
 </template>
 
@@ -28,7 +69,7 @@ export default {
   position: relative;
   background: url('../assets/images/tech-event.jpeg') center/cover no-repeat;
   z-index: 1;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .home-container::before {
@@ -49,6 +90,7 @@ export default {
 .home-intro {
   display: flex;
   flex-direction: column;
+  gap: 16px;
   text-align: center;
   margin-top: 40px;
 }
@@ -74,5 +116,13 @@ export default {
   align-items: center;
   gap: 8px;
   color: rgb(255, 255, 255);
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: space-evenly;
+  margin: 64px 0 64px 0;
 }
 </style>
