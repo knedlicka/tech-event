@@ -4,3 +4,15 @@
   font-size: 32px;
   font-weight: 700;
 }
+
+.text-input {
+  height: 20px;
+  padding: 4px;
+  border-radius: 5px;
+}
+
+.select-input {
+  height: 30px;
+  padding: 3px;
+  border-radius: 5px;
+}

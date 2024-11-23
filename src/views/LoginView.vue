@@ -1,9 +1,10 @@
 <script>
 import { routePaths } from '@/router';
+import MainButton from '@/components/buttons/MainButton.vue';
 
 export default {
+    components: { MainButton },
     data() {
-        console.log(JSON.stringify(routePaths?.register?.path, null, 2));
         return {
             email: "",
             password: "",
@@ -14,9 +15,6 @@ export default {
         handleLogin() {
             console.log(`Email: ${this.email} | password: ${this.password}`);
         },
-        redirectToRegistration() {
-
-        }
     }
 }
 </script>
@@ -27,12 +25,12 @@ export default {
             <div class="login-form-with-header-container">
                 <div class="heading-section">Log in</div>
                 <div>
-                    Or <RouterLink :to="routerPathInfo.register.path">register</RouterLink>.
+                    No account yet? <RouterLink :to="routerPathInfo.register.path">Register</RouterLink>.
                 </div>
-                <form class="login-form" @submit.prevent="this.handleLogin">
-                    <input type="email" name="email" v-model="this.email" placeholder="Email" />
-                    <input type="password" v-model="this.password" placeholder="Password" />
-                    <input type="submit" value="Log in" />
+                <form class="login-form">
+                    <input type="email" name="email" v-model="this.email" placeholder="Email" class="text-input" />
+                    <input type="password" v-model="this.password" placeholder="Password" class="text-input" />
+                    <MainButton @click.prevent="this.handleLogin" label="Log in" />
                 </form>
             </div>
         </div>
@@ -68,7 +66,17 @@ export default {
 .login-right-part {
     width: 50%;
     height: 100%;
-    background: blue;
+    background: url('../assets/images/tech-event-login.jpeg') center/cover no-repeat;
+}
+
+@media (max-width: 700px) {
+    .login-left-part {
+        width: 100%;
+    }
+
+    .login-right-part {
+        width: 0;
+    }
 }
 
 .login-form {
