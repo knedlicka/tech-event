@@ -36,7 +36,7 @@ export default {
                         <select required v-model="this.role" class="select-input">
                             <option disabled value="">Select role</option>
                             <option value="organizer">Organizer</option>
-                            <option value="visitor">Visitor</option>
+                            <option value="participant">Participant</option>
                         </select>
                         <input required type="email" name="email" v-model="this.email" placeholder="Email"
                             class="text-input" />
