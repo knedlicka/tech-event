@@ -6,6 +6,11 @@ import RegisterView from '@/views/RegisterView.vue'
 import SpeakersView from '@/views/SpeakersView.vue'
 import SpeakerDetailView from '@/views/SpeakerDetailView.vue'
 import TalkDetailView from '@/views/TalkDetailView.vue'
+import ProfileView from '@/views/ProfileView.vue'
+import OrganizersAdminView from '@/views/OrganizersAdminView.vue'
+import ParticipantsAdminView from '@/views/ParticipantsAdminView.vue'
+import NotificationsAdminView from '@/views/NotificationsAdminView.vue'
+import TicketsAdminView from '@/views/TicketsAdminView.vue'
 
 export const routePaths = {
   home: {
@@ -42,6 +47,31 @@ export const routePaths = {
     name: 'register',
     path: '/register',
     component: RegisterView,
+  },
+  profile: {
+    name: 'profile',
+    path: '/profile',
+    component: ProfileView,
+  },
+  organizersAdmin: {
+    name: 'organizersAdmin',
+    path: '/admin/organizers',
+    component: OrganizersAdminView,
+  },
+  participantsAdmin: {
+    name: 'participantsAdmin',
+    path: '/admin/participants',
+    component: ParticipantsAdminView,
+  },
+  notificationsAdmin: {
+    name: 'notificationsAdmin',
+    path: '/admin/notifications',
+    component: NotificationsAdminView,
+  },
+  ticketsAdmin: {
+    name: 'ticketsAdmin',
+    path: '/admin/tickets',
+    component: TicketsAdminView,
   },
 }
 
