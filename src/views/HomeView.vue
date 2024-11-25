@@ -9,14 +9,6 @@ export default {
     return {
       cards: [
         {
-          label: "Register",
-          path: routePaths.register.path,
-        },
-        {
-          label: "Log in",
-          path: routePaths.login.path,
-        },
-        {
           label: "Program",
           path: routePaths.program.path,
         },

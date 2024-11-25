@@ -1,7 +1,6 @@
 <script>
 import SpeakerOverview from '@/components/speaker-overview/SpeakerOverview.vue';
 import { speakers } from '@/constants/settings';
-import { routePaths } from '@/router';
 
 export default {
     components: { SpeakerOverview },

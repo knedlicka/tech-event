@@ -18,10 +18,13 @@ export default {
 </template>
 
 <style>
+.schedule-table-row-container {
+    position: relative;
+}
+
 .schedule-table-row-content {
     display: grid;
     grid-template-columns: 15% 40% 30% 15%;
-    position: relative;
     background: rgb(231, 231, 231);
     padding: 16px 0 16px 0;
     cursor: pointer;

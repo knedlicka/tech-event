@@ -80,4 +80,21 @@ const router = createRouter({
   routes: Object.values(routePaths),
 })
 
+router.beforeEach(async (to, from) => {
+  const isLoggedIn = localStorage.getItem('email') !== null
+  const protectedNames = [
+    'profile',
+    'organizersAdmin',
+    'participantsAdmin',
+    'notificationsAdmin',
+    'ticketsAdmin',
+  ]
+  if (!isLoggedIn && protectedNames.includes(to.name)) {
+    return { name: 'login' }
+  }
+  if (isLoggedIn && ['login', 'register'].includes(to.name)) {
+    return { name: 'home' }
+  }
+})
+
 export default router

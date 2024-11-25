@@ -10,6 +10,7 @@
                 <RouterLink :class="this.$route.path === menuItem.path ? 'active' : ''" :to="menuItem.path">{{
                     menuItem.name }}</RouterLink>
             </div>
+            <div v-if="this.isLoggedIn" class="menu-link-container" @click="this.handleLogout"><a>Log out</a></div>
         </div>
         <div class="hamburger-menu" v-if="this.isMobile">
             <button @click="this.toggleMenu">
@@ -22,6 +23,7 @@
             :key="menuItem.name">
             <RouterLink :to="menuItem.path">{{ menuItem.name }}</RouterLink>
         </div>
+        <div v-if="this.isLoggedIn" class="expanded-menu-link-container" @click="this.handleLogout"><a>Log out</a></div>
     </div>
 </template>
 
@@ -30,11 +32,27 @@ import { routePaths } from '@/router';
 
 export default {
     data() {
+        const isLoggedIn = localStorage.getItem('email') !== null;
+        const loggedInMenuItems = [routePaths.home, routePaths.program, routePaths.speakers];
+        const notLoggedInMenuItems = [...loggedInMenuItems, routePaths.login];
         return {
             isMobile: window.innerWidth <= 600,
             showMenu: false,
-            menuItems: [routePaths.home, routePaths.program, routePaths.speakers, routePaths.login],
+            loggedInMenuItems: loggedInMenuItems,
+            notLoggedInMenuItems: notLoggedInMenuItems,
+            menuItems: isLoggedIn ? loggedInMenuItems : notLoggedInMenuItems,
+            isLoggedIn: isLoggedIn,
         };
+    },
+
+    watch: {
+        isLoggedIn(newLoggedIn) {
+            if (newLoggedIn) {
+                this.menuItems = this.loggedInMenuItems;
+            } else {
+                this.menuItems = this.notLoggedInMenuItems;
+            }
+        }
     },
 
     methods: {
@@ -46,6 +64,10 @@ export default {
         },
         hideMenu() {
             this.showMenu = false;
+        },
+        handleLogout() {
+            localStorage.removeItem('email');
+            this.isLoggedIn = false;
         },
     },
 
@@ -94,6 +116,7 @@ export default {
 
 .menu-link-container {
     text-transform: capitalize;
+    cursor: pointer;
 }
 
 .menu-link-container a {
@@ -111,6 +134,7 @@ export default {
     width: 100%;
     border-top: 1px solid white;
     padding: 16px;
+    cursor: pointer;
 }
 
 .expanded-menu-link-container a {
