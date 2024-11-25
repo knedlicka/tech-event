@@ -33,7 +33,7 @@ export default {
         return {
             isMobile: window.innerWidth <= 600,
             showMenu: false,
-            menuItems: Object.values(routePaths),
+            menuItems: [routePaths.home, routePaths.program, routePaths.speakers, routePaths.login],
         };
     },
 
