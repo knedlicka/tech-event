@@ -5,6 +5,7 @@ import LoginView from '../views/LoginView.vue'
 import RegisterView from '@/views/RegisterView.vue'
 import SpeakersView from '@/views/SpeakersView.vue'
 import SpeakerDetailView from '@/views/SpeakerDetailView.vue'
+import TalkDetailView from '@/views/TalkDetailView.vue'
 
 export const routePaths = {
   home: {
@@ -16,6 +17,11 @@ export const routePaths = {
     name: 'program',
     path: '/program',
     component: ProgramView,
+  },
+  talkDetails: {
+    name: 'talkDetail',
+    path: '/talks/:id',
+    component: TalkDetailView,
   },
   speakers: {
     name: 'speakers',

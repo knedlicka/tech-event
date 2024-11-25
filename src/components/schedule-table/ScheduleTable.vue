@@ -15,8 +15,8 @@ export default {
             <div>Speaker</div>
             <div>Room</div>
         </div>
-        <ScheduleTableRow v-for="row in this.rows" :key="row.title" :time="row.time" :title="row.title"
-            :speaker="row.speaker" :room="row.room" />
+        <ScheduleTableRow v-for="(row, index) in this.rows" :key="row.title" :time="row.time" :title="row.title"
+            :speaker="row.speaker" :room="row.room" :id="index" />
     </div>
 </template>
 
