@@ -1,6 +1,7 @@
 <script>
 import SpeakerOverview from '@/components/speaker-overview/SpeakerOverview.vue';
 import { speakers } from '@/constants/settings';
+import { routePaths } from '@/router';
 
 export default {
     components: { SpeakerOverview },
@@ -24,8 +25,10 @@ export default {
                     <b>lifetimes of experience</b> combined.
                 </div>
             </div>
-            <SpeakerOverview v-for="speaker in this.speakers" :key="speaker.name" :name="speaker.name"
-                :country="speaker.country" />
+            <RouterLink v-for="(speaker, index) in this.speakers" :key="speaker.name"
+                :to="{ name: 'speakerDetail', params: { id: index } }" class="non-link">
+                <SpeakerOverview :name="speaker.name" :country="speaker.country" />
+            </RouterLink>
         </div>
     </main>
 </template>

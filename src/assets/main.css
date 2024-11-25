@@ -21,3 +21,8 @@
   padding: 3px;
   border-radius: 5px;
 }
+
+.non-link {
+  text-decoration: none;
+  color: inherit;
+}
