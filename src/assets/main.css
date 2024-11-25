@@ -1,8 +1,13 @@
 @import './base.css';
 
 .heading-section {
+  color: rgb(221, 73, 5);
   font-size: 32px;
   font-weight: 700;
+}
+
+.white-link {
+  color: rgb(218, 214, 214);
 }
 
 .text-input {

@@ -26,7 +26,8 @@ export default {
                 <div class="login-form-with-header-container">
                     <div class="heading-section">Log in</div>
                     <div>
-                        No account yet? <RouterLink :to="routerPathInfo.register.path">Register</RouterLink>.
+                        No account yet? <RouterLink :to="routerPathInfo.register.path" class="white-link">Register
+                        </RouterLink>.
                     </div>
                     <form class="login-form">
                         <input required type="email" name="email" v-model="this.email" placeholder="Email"
@@ -48,6 +49,8 @@ export default {
     flex-direction: column;
     flex: 1;
     width: 100%;
+    background: rgb(2, 3, 21);
+    color: white;
 }
 
 .login-inner-container {

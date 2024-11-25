@@ -20,8 +20,9 @@ export default {
     width: 240px;
     height: 160px;
     border-radius: 10px;
-    background: white;
-    opacity: 0.3;
+    background: grey;
+    color: white;
+    opacity: 0.6;
     cursor: pointer;
     box-shadow: 3px 3px 4px rgb(145, 154, 163);
 }
@@ -29,5 +30,7 @@ export default {
 .clickable-card-container:hover {
     transform: translate(1px, 1px);
     box-shadow: none;
+    opacity: 0.8;
+    background: rgb(107, 106, 106);
 }
 </style>

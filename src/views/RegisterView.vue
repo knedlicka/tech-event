@@ -28,7 +28,8 @@ export default {
                 <div class="register-form-with-header-container">
                     <div class="heading-section">Register</div>
                     <div>
-                        Already have an account? <RouterLink :to="routerPathInfo.login.path">Log in</RouterLink>.
+                        Already have an account? <RouterLink class="white-link" :to="routerPathInfo.login.path">Log in
+                        </RouterLink>.
                     </div>
                     <form class="register-form">
                         <input required type="text" name="full-name" v-model="this.fullName" placeholder="Full Name"
@@ -57,6 +58,8 @@ export default {
     flex-direction: column;
     flex: 1;
     width: 100%;
+    background: rgb(2, 3, 21);
+    color: white;
 }
 
 .register-inner-container {

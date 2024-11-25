@@ -13,24 +13,16 @@ export default {
           path: routePaths.register.path,
         },
         {
-          label: "Program",
-          path: routePaths.program.path,
+          label: "Log in",
+          path: routePaths.login.path,
         },
         {
           label: "Program",
           path: routePaths.program.path,
         },
         {
-          label: "Program",
-          path: routePaths.program.path,
-        },
-        {
-          label: "Program",
-          path: routePaths.program.path,
-        },
-        {
-          label: "Program",
-          path: routePaths.program.path,
+          label: "Speakers",
+          path: routePaths.speakers.path,
         },
       ]
     }

@@ -7,7 +7,8 @@
         </div>
         <div class="nav-half" v-if="!this.isMobile">
             <div class="menu-link-container" v-for="menuItem of this.menuItems" :key="menuItem.name">
-                <RouterLink :to="menuItem.path">{{ menuItem.name }}</RouterLink>
+                <RouterLink :class="this.$route.path === menuItem.path ? 'active' : ''" :to="menuItem.path">{{
+                    menuItem.name }}</RouterLink>
             </div>
         </div>
         <div class="hamburger-menu" v-if="this.isMobile">
@@ -98,10 +99,11 @@ export default {
 .menu-link-container a {
     text-decoration: none;
     color: white;
+    opacity: 0.7;
 }
 
 .menu-link-container a:hover {
-    font-weight: 700;
+    opacity: 1;
 }
 
 .expanded-menu-link-container {
@@ -114,9 +116,15 @@ export default {
 .expanded-menu-link-container a {
     text-decoration: none;
     color: white;
+    opacity: 0.7;
 }
 
 .expanded-menu-link-container a:hover {
+    opacity: 1;
+}
+
+.active {
+    opacity: 1 !important;
     font-weight: 700;
 }
 </style>
