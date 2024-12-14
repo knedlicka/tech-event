@@ -80,7 +80,7 @@ const router = createRouter({
   routes: Object.values(routePaths),
 })
 
-router.beforeEach(async (to, from) => {
+router.beforeEach((to, from) => {
   const isLoggedIn = localStorage.getItem('email') !== null
   const protectedNames = [
     'profile',
