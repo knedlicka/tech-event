@@ -11,6 +11,7 @@ import OrganizersAdminView from '@/views/OrganizersAdminView.vue'
 import ParticipantsAdminView from '@/views/ParticipantsAdminView.vue'
 import NotificationsAdminView from '@/views/NotificationsAdminView.vue'
 import TicketsAdminView from '@/views/TicketsAdminView.vue'
+import { useUserStore } from '@/stores/user'
 
 export const routePaths = {
   home: {
@@ -22,21 +23,33 @@ export const routePaths = {
     name: 'program',
     path: '/program',
     component: ProgramView,
+    meta: {
+      requiresAuth: true,
+    },
   },
   talkDetails: {
     name: 'talkDetail',
     path: '/talks/:id',
     component: TalkDetailView,
+    meta: {
+      requiresAuth: true,
+    },
   },
   speakers: {
     name: 'speakers',
     path: '/speakers',
     component: SpeakersView,
+    meta: {
+      requiresAuth: true,
+    },
   },
   speakerDetail: {
     name: 'speakerDetail',
     path: '/speakers/:id',
     component: SpeakerDetailView,
+    meta: {
+      requiresAuth: true,
+    },
   },
   login: {
     name: 'login',
@@ -52,26 +65,41 @@ export const routePaths = {
     name: 'profile',
     path: '/profile',
     component: ProfileView,
+    meta: {
+      requiresAuth: true,
+    },
   },
   organizersAdmin: {
     name: 'organizersAdmin',
     path: '/admin/organizers',
     component: OrganizersAdminView,
+    meta: {
+      requiresAuth: true,
+    },
   },
   participantsAdmin: {
     name: 'participantsAdmin',
     path: '/admin/participants',
     component: ParticipantsAdminView,
+    meta: {
+      requiresAuth: true,
+    },
   },
   notificationsAdmin: {
     name: 'notificationsAdmin',
     path: '/admin/notifications',
     component: NotificationsAdminView,
+    meta: {
+      requiresAuth: true,
+    },
   },
   ticketsAdmin: {
     name: 'ticketsAdmin',
     path: '/admin/tickets',
     component: TicketsAdminView,
+    meta: {
+      requiresAuth: true,
+    },
   },
 }
 
@@ -80,20 +108,14 @@ const router = createRouter({
   routes: Object.values(routePaths),
 })
 
-router.beforeEach((to, from) => {
-  const isLoggedIn = localStorage.getItem('email') !== null
-  const protectedNames = [
-    'profile',
-    'organizersAdmin',
-    'participantsAdmin',
-    'notificationsAdmin',
-    'ticketsAdmin',
-  ]
-  if (!isLoggedIn && protectedNames.includes(to.name)) {
-    return { name: 'login' }
-  }
-  if (isLoggedIn && ['login', 'register'].includes(to.name)) {
-    return { name: 'home' }
+router.beforeEach((to, from, next) => {
+  const userStore = useUserStore()
+  if (userStore.isLoggedIn && [routePaths.register.path, routePaths.login.path].includes(to.path)) {
+    next(routePaths.home.path)
+  } else if (to.meta.requiresAuth && !userStore.isLoggedIn) {
+    next(routePaths.login.path)
+  } else {
+    next()
   }
 })
 

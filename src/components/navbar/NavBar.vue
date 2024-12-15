@@ -10,7 +10,8 @@
                 <RouterLink :class="this.$route.path === menuItem.path ? 'active' : ''" :to="menuItem.path">{{
                     menuItem.name }}</RouterLink>
             </div>
-            <div v-if="this.isLoggedIn" class="menu-link-container" @click="this.handleLogout"><a>Log out</a></div>
+            <div v-if="this.userStore.isLoggedIn" class="menu-link-container" @click="this.handleLogout"><a>Log out</a>
+            </div>
         </div>
         <div class="hamburger-menu" v-if="this.isMobile">
             <button @click="this.toggleMenu">
@@ -23,38 +24,33 @@
             :key="menuItem.name">
             <RouterLink :to="menuItem.path">{{ menuItem.name }}</RouterLink>
         </div>
-        <div v-if="this.isLoggedIn" class="expanded-menu-link-container" @click="this.handleLogout"><a>Log out</a></div>
+        <div v-if="this.userStore.isLoggedIn" class="expanded-menu-link-container" @click="this.handleLogout"><a>Log
+                out</a></div>
     </div>
 </template>
 
 <script>
-import { routePaths } from '@/router';
+import router, { routePaths } from '@/router';
+import { useUserStore } from '@/stores/user';
 
 export default {
     data() {
-        const isLoggedIn = localStorage.getItem('email') !== null;
+        const userStore = useUserStore();
         const loggedInMenuItems = [routePaths.home, routePaths.program, routePaths.speakers];
-        const notLoggedInMenuItems = [...loggedInMenuItems, routePaths.login];
+        const notLoggedInMenuItems = [routePaths.home, routePaths.login];
         return {
+            userStore: userStore,
             isMobile: window.innerWidth <= 600,
             showMenu: false,
             loggedInMenuItems: loggedInMenuItems,
             notLoggedInMenuItems: notLoggedInMenuItems,
-            menuItems: isLoggedIn ? loggedInMenuItems : notLoggedInMenuItems,
-            isLoggedIn: isLoggedIn,
         };
     },
-
-    watch: {
-        isLoggedIn(newLoggedIn) {
-            if (newLoggedIn) {
-                this.menuItems = this.loggedInMenuItems;
-            } else {
-                this.menuItems = this.notLoggedInMenuItems;
-            }
-        }
+    computed: {
+        menuItems() {
+            return this.userStore.isLoggedIn ? this.loggedInMenuItems : this.notLoggedInMenuItems
+        },
     },
-
     methods: {
         handleResize() {
             this.isMobile = window.innerWidth <= 600;
@@ -66,11 +62,10 @@ export default {
             this.showMenu = false;
         },
         handleLogout() {
-            localStorage.removeItem('email');
-            this.isLoggedIn = false;
+            this.userStore.logout();
+            router.push(routePaths.home.path);
         },
     },
-
     mounted() {
         window.addEventListener('resize', this.handleResize);
     },

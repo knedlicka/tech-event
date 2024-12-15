@@ -26,3 +26,7 @@
   text-decoration: none;
   color: inherit;
 }
+
+.error {
+  color: rgb(254, 0, 0);
+}

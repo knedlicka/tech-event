@@ -1,20 +1,29 @@
 <script>
 import { routePaths } from '@/router';
 import MainButton from '@/components/buttons/MainButton.vue';
+import { useUserStore } from '@/stores/user';
+import router from '@/router';
 
 export default {
     components: { MainButton },
     data() {
         return {
+            userStore: useUserStore(),
             email: "",
             password: "",
+            error: undefined,
             routerPathInfo: routePaths,
         };
     },
     methods: {
         handleLogin() {
-            console.log(`Email: ${this.email} | password: ${this.password}`);
-            localStorage.setItem('email', this.email);
+            const user = this.userStore.getByLoginCredentials(this.email, this.password);
+            if (user !== undefined) {
+                this.userStore.currentUser = user;
+                router.push(routePaths.home.path);
+            } else {
+                this.error = "Invalid username or password";
+            }
         },
     }
 }
@@ -30,6 +39,7 @@ export default {
                         No account yet? <RouterLink :to="routerPathInfo.register.path" class="white-link">Register
                         </RouterLink>.
                     </div>
+                    <div v-if="this.error !== undefined" class="error">{{ this.error }}</div>
                     <form class="login-form">
                         <input required type="email" name="email" v-model="this.email" placeholder="Email"
                             class="text-input" />
