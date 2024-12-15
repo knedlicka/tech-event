@@ -1,15 +1,6 @@
 <script>
-import { rng } from '@/utils/common';
-
-const RANDOM_PHOTOS_COUNT = 9;
-
 export default {
-    props: ['name', 'country'],
-    data() {
-        return {
-            photoPath: `/src/assets/images/profile-photo-${rng(1, RANDOM_PHOTOS_COUNT)}.jpeg`,
-        }
-    },
+    props: ['name', 'country', 'photoPath'],
 }
 </script>
 

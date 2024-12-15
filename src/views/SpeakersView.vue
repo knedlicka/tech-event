@@ -25,8 +25,8 @@ export default {
                 </div>
             </div>
             <RouterLink v-for="(speaker, index) in this.speakers" :key="speaker.name"
-                :to="{ name: 'speakerDetail', params: { id: index } }" class="non-link">
-                <SpeakerOverview :name="speaker.name" :country="speaker.country" />
+                :to="{ name: 'speakerDetail', params: { name: speaker.name } }" class="non-link">
+                <SpeakerOverview :name="speaker.name" :country="speaker.country" :photoPath="speaker.photoPath" />
             </RouterLink>
         </div>
     </main>

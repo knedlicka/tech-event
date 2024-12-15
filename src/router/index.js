@@ -45,7 +45,7 @@ export const routePaths = {
   },
   speakerDetail: {
     name: 'speakerDetail',
-    path: '/speakers/:id',
+    path: '/speakers/:name',
     component: SpeakerDetailView,
     meta: {
       requiresAuth: true,

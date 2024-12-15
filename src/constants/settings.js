@@ -1,3 +1,5 @@
+export const RANDOM_PHOTOS_COUNT = 9
+
 export const program = [
   {
     dayTitle: '28th January',
@@ -499,4 +501,7 @@ export const speakers = [
   { name: 'Sophia Clark', bio: 'HCI researcher.', country: '🇺🇸' },
   { name: 'Liam Garcia', bio: 'AI for music.', country: '🇦🇷' },
   { name: 'Charlotte Chen', bio: 'Hardware design engineer.', country: '🇹🇼' },
-]
+].map((speaker, index) => ({
+  ...speaker,
+  photoPath: `/src/assets/images/profile-photo-${(index % RANDOM_PHOTOS_COUNT) + 1}.jpeg`,
+}))

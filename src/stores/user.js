@@ -91,4 +91,5 @@ export const useUserStore = defineStore('user', {
       this.users = [...this.users, newUser]
     },
   },
+  persist: true,
 })

@@ -7,9 +7,19 @@ export const useProgramStore = defineStore('program', {
     speakers: speakers,
   }),
   actions: {
-    getTalk(talkTitle) {
+    getAllTalks() {
       const allTalks = this.program.flatMap((dayInfo) => dayInfo.talks)
-      return allTalks.find((talk) => talk.title === talkTitle)
+      return allTalks
+    },
+    getTalk(talkTitle) {
+      return this.getAllTalks().find((talk) => talk.title === talkTitle)
+    },
+    getSpeakerByName(name) {
+      return this.speakers.find((speaker) => speaker.name === name)
+    },
+    getTalksBySpeakerName(speakerName) {
+      return this.getAllTalks().filter((talk) => talk.speaker === speakerName)
     },
   },
+  persist: true,
 })

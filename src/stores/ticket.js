@@ -15,4 +15,5 @@ export const useTicketStore = defineStore('ticket', {
       },
     ],
   }),
+  persist: true,
 })
