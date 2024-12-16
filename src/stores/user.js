@@ -90,6 +90,36 @@ export const useUserStore = defineStore('user', {
       }
       this.users = [...this.users, newUser]
     },
+    registerForTalk(talkTitle) {
+      if (this.currentUser) {
+        this.currentUser.talkTitles = [...this.currentUser.talkTitles, talkTitle]
+        this.users = this.users.map((user) => {
+          if (user.email === this.currentUser.email && !user.talkTitles.includes(talkTitle)) {
+            return {
+              ...user,
+              talkTitles: [...user.talkTitles, talkTitle],
+            }
+          }
+          return user
+        })
+      }
+    },
+    unregisterFromTalk(talkTitle) {
+      if (this.currentUser) {
+        this.currentUser.talkTitles = this.currentUser.talkTitles.filter(
+          (title) => title !== talkTitle,
+        )
+        this.users = this.users.map((user) => {
+          if (user.email === this.currentUser.email) {
+            return this.currentUser
+          }
+          return user
+        })
+      }
+    },
+    isRegisteredForTalk(talkTitle) {
+      return (this.currentUser?.talkTitles ?? []).includes(talkTitle)
+    },
   },
   persist: true,
 })

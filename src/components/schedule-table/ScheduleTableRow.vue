@@ -1,19 +1,50 @@
 <script>
+import { useUserStore } from '@/stores/user';
+
 export default {
-    props: ['time', 'title', 'speaker', 'room', 'id']
+    props: ['time', 'title', 'speaker', 'room', 'id'],
+    data() {
+        const userStore = useUserStore();
+        return {
+            userStore: userStore,
+            currentUserRegistered: userStore.isRegisteredForTalk(this.title),
+        }
+    },
+    methods: {
+        handleRegistration() {
+            if (this.currentUserRegistered) {
+                this.userStore.registerForTalk(this.title);
+            } else {
+                this.userStore.unregisterFromTalk(this.title);
+            }
+            this.currentUserRegistered = !this.currentUserRegistered;
+        }
+    }
 }
 </script>
 
 <template>
     <div class="schedule-table-row-container">
-        <RouterLink :to="{ name: 'talkDetail', params: { title: this.title } }" class="non-link">
-            <div class="schedule-table-row-content">
+        <div class="schedule-table-row-content">
+            <RouterLink :to="{ name: 'talkDetail', params: { title: this.title } }" class="non-link">
                 <div class="schedule-row-field">{{ this.time }}</div>
+            </RouterLink>
+            <RouterLink :to="{ name: 'talkDetail', params: { title: this.title } }" class="non-link">
                 <div class="schedule-row-field"><i>{{ this.title }}</i></div>
+            </RouterLink>
+            <RouterLink :to="{ name: 'talkDetail', params: { title: this.title } }" class="non-link">
                 <div class="schedule-row-field">{{ this.speaker }}</div>
+            </RouterLink>
+            <RouterLink :to="{ name: 'talkDetail', params: { title: this.title } }" class="non-link">
                 <div class="schedule-row-field">{{ this.room }}</div>
+            </RouterLink>
+            <div>
+                <button v-on:click="handleRegistration()"
+                    :class="this.currentUserRegistered ? 'reg-button button-register' : 'reg-button button-unregister'">
+                    {{ this.currentUserRegistered ? 'Unregister' : 'Register' }}
+                </button>
             </div>
-        </RouterLink>
+        </div>
     </div>
 </template>
 
@@ -24,7 +55,7 @@ export default {
 
 .schedule-table-row-content {
     display: grid;
-    grid-template-columns: 15% 40% 30% 15%;
+    grid-template-columns: 15% 35% 25% 15% 10%;
     background: rgb(231, 231, 231);
     padding: 16px 0 16px 0;
     cursor: pointer;
@@ -60,5 +91,22 @@ export default {
 
 .schedule-row-field {
     padding-inline: 3px;
+}
+
+.reg-button {
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.reg-button:hover {
+    transform: translate(1px, 1px);
+}
+
+.button-register {
+    background: orange;
+}
+
+.button-unregister {
+    background: cyan;
 }
 </style>
