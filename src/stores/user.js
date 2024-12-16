@@ -87,6 +87,7 @@ export const useUserStore = defineStore('user', {
         password,
         ticketName: 'regular',
         role,
+        talkTitles: [],
       }
       this.users = [...this.users, newUser]
     },
