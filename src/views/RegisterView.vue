@@ -11,7 +11,7 @@ export default {
             email: "",
             password: "",
             fullName: "",
-            role: "",
+            role: "participant",
             routerPathInfo: routePaths,
             error: undefined,
         };
@@ -40,11 +40,11 @@ export default {
                     <form class="register-form">
                         <input required type="text" name="full-name" v-model="this.fullName" placeholder="Full Name"
                             class="text-input" />
-                        <select required v-model="this.role" class="select-input">
+                        <!-- <select required v-model="this.role" class="select-input">
                             <option disabled value="">Select role</option>
                             <option value="organizer">Organizer</option>
                             <option value="participant">Participant</option>
-                        </select>
+                        </select> -->
                         <input required type="email" name="email" v-model="this.email" placeholder="Email"
                             class="text-input" />
                         <input required type="password" v-model="this.password" placeholder="Password"
