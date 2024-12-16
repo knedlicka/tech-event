@@ -6,7 +6,7 @@ export default {
 
 <template>
     <div class="schedule-table-row-container">
-        <RouterLink :to="{ name: 'talkDetail', params: { id: this.id } }" class="non-link">
+        <RouterLink :to="{ name: 'talkDetail', params: { title: this.title } }" class="non-link">
             <div class="schedule-table-row-content">
                 <div class="schedule-row-field">{{ this.time }}</div>
                 <div class="schedule-row-field"><i>{{ this.title }}</i></div>

@@ -20,7 +20,7 @@ export default {
 <template>
     <main class="speaker-detail-container">
         <div class="speaker-detail-info">
-            <div class="heading-section">{{ this.speaker.name }}</div>
+            <div class="heading-section">{{ this.speaker.name }} {{ this.speaker.country }}</div>
             <div>{{ this.speaker.bio }}</div>
             <div class="talks-list-container">
                 <div class="talks-heading">

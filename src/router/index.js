@@ -29,7 +29,7 @@ export const routePaths = {
   },
   talkDetails: {
     name: 'talkDetail',
-    path: '/talks/:id',
+    path: '/talks/:title',
     component: TalkDetailView,
     meta: {
       requiresAuth: true,
