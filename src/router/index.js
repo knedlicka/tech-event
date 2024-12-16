@@ -23,9 +23,6 @@ export const routePaths = {
     name: 'program',
     path: '/program',
     component: ProgramView,
-    meta: {
-      requiresAuth: true,
-    },
   },
   talkDetails: {
     name: 'talkDetail',
@@ -39,17 +36,11 @@ export const routePaths = {
     name: 'speakers',
     path: '/speakers',
     component: SpeakersView,
-    meta: {
-      requiresAuth: true,
-    },
   },
   speakerDetail: {
     name: 'speakerDetail',
     path: '/speakers/:name',
     component: SpeakerDetailView,
-    meta: {
-      requiresAuth: true,
-    },
   },
   login: {
     name: 'login',
