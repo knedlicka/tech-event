@@ -38,7 +38,7 @@ export default {
             <RouterLink :to="{ name: 'talkDetail', params: { title: this.title } }" class="non-link">
                 <div class="schedule-row-field">{{ this.room }}</div>
             </RouterLink>
-            <div>
+            <div v-if="this.userStore.isLoggedIn">
                 <button v-on:click="handleRegistration()"
                     :class="this.currentUserRegistered ? 'reg-button button-register' : 'reg-button button-unregister'">
                     {{ this.currentUserRegistered ? 'Unregister' : 'Register' }}

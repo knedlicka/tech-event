@@ -1,9 +1,16 @@
 <script>
+import { useUserStore } from '@/stores/user';
 import ScheduleTableRow from './ScheduleTableRow.vue';
 
 export default {
     components: { ScheduleTableRow },
     props: ['rows'],
+    data() {
+        const userStore = useUserStore();
+        return {
+            userStore: userStore,
+        }
+    },
 }
 </script>
 
@@ -14,7 +21,7 @@ export default {
             <div>Title</div>
             <div>Speaker</div>
             <div>Room</div>
-            <div>Register</div>
+            <div v-if="this.userStore.isLoggedIn">Register</div>
         </div>
         <ScheduleTableRow v-for="(row, index) in this.rows" :key="row.title" :time="row.time" :title="row.title"
             :speaker="row.speaker" :room="row.room" :id="index" />

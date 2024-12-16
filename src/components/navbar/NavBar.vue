@@ -37,7 +37,7 @@ export default {
     data() {
         const userStore = useUserStore();
         const loggedInMenuItems = [routePaths.home, routePaths.program, routePaths.speakers, routePaths.profile];
-        const notLoggedInMenuItems = [routePaths.home, routePaths.login];
+        const notLoggedInMenuItems = [routePaths.home, routePaths.program, routePaths.speakers, routePaths.login];
         return {
             userStore: userStore,
             isMobile: window.innerWidth <= 600,
