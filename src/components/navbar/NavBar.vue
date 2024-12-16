@@ -36,7 +36,7 @@ import { useUserStore } from '@/stores/user';
 export default {
     data() {
         const userStore = useUserStore();
-        const loggedInMenuItems = [routePaths.home, routePaths.program, routePaths.speakers];
+        const loggedInMenuItems = [routePaths.home, routePaths.program, routePaths.speakers, routePaths.profile];
         const notLoggedInMenuItems = [routePaths.home, routePaths.login];
         return {
             userStore: userStore,
