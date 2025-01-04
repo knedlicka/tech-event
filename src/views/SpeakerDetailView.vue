@@ -1,9 +1,11 @@
 <script>
 import { useProgramStore } from '@/stores/program';
 import { useRoute } from 'vue-router';
+import TalksList from '@/components/talks-list/TalksList.vue';
 
 
 export default {
+    components: { TalksList },
     data() {
         const route = useRoute();
         const programStore = useProgramStore();
@@ -22,14 +24,7 @@ export default {
         <div class="speaker-detail-info">
             <div class="heading-section">{{ this.speaker.name }} {{ this.speaker.country }}</div>
             <div>{{ this.speaker.bio }}</div>
-            <div class="talks-list-container">
-                <div class="talks-heading">
-                    Talks:
-                </div>
-                <div v-for="talk in this.talks" :key="talk.title" class="talk-info">
-                    <span>{{ talk.title }}</span>
-                </div>
-            </div>
+            <TalksList :talks="this.talks" />
         </div>
         <div class="speaker-detail-photo-container">
             <img :src="this.speaker.photoPath" class="speaker-detail-photo" />
@@ -66,29 +61,6 @@ export default {
 
 .speaker-detail-photo {
     width: 100%;
-}
-
-.talks-list-container {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    justify-content: center;
-}
-
-.talks-heading {
-    font-weight: 700;
-    font-size: 20px;
-}
-
-.talk-info {
-    display: flex;
-    padding: 12px;
-    background: rgb(231, 231, 231);
-    border-radius: 10px;
-    color: rgb(2, 3, 21);
-    opacity: 0.4;
 }
 
 @media (max-width: 460px) {
