@@ -1,11 +1,11 @@
 <script>
 export default {
-    props: ['label']
+    props: ['label', 'type']
 }
 </script>
 
 <template>
-    <button class="main-button">
+    <button :class="`main-button ${this.type === 'secondary' ? 'secondary-button' : ''}`">
         {{ this.label }}
     </button>
 </template>
@@ -24,5 +24,9 @@ export default {
 .main-button:hover {
     box-shadow: none;
     transform: translate(1px, 1px);
+}
+
+.secondary-button {
+    background: rgb(0, 99, 230);
 }
 </style>

@@ -9,9 +9,12 @@ export default {
         <div class="talks-heading">
             Talks:
         </div>
-        <div v-for="talk in this.talks" :key="talk.title" class="talk-info">
-            <span>{{ talk.title }}</span>
-        </div>
+        <RouterLink v-for="talk in this.talks" :key="talk.title"
+            :to="{ name: 'talkDetail', params: { title: talk.title } }" class="non-link">
+            <div class="talk-info">
+                <span>{{ talk.title }}</span>
+            </div>
+        </RouterLink>
     </div>
 </template>
 
@@ -37,5 +40,10 @@ export default {
     border-radius: 10px;
     color: rgb(2, 3, 21);
     opacity: 0.4;
+    cursor: pointer;
+}
+
+.talk-info:hover {
+    background: rgb(215, 215, 215);
 }
 </style>

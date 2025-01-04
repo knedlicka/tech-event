@@ -15,8 +15,8 @@ export default {
 </script>
 
 <template>
-    <div class="schedule-table-container">
-        <div class="schedule-table-header">
+    <div class="table-container schedule-table-container">
+        <div class="table-header schedule-table-header">
             <div>Time</div>
             <div>Title</div>
             <div>Speaker</div>
@@ -29,26 +29,8 @@ export default {
 </template>
 
 <style>
-.schedule-table-container {
-    display: flex;
-    flex-direction: column;
-    opacity: 0.5;
-    color: black;
-    overflow-x: scroll;
-}
-
 .schedule-table-header {
-    display: grid;
-    grid-template-columns: 15% 35% 25% 15% 10%;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: white;
     min-width: 800px;
-}
-
-@media (max-width: 700px) {
-    .schedule-table-header {
-        font-size: 12px;
-    }
+    grid-template-columns: 15% 35% 25% 15% 10%;
 }
 </style>

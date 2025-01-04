@@ -22,7 +22,7 @@ export default {
 
 <template>
     <main class="profile-view-container">
-        <div class="inner-container">
+        <div v-if="userStore?.currentUser" class="inner-container">
             <p></p>
             <div class="heading-section">Your profile</div>
             <p></p>

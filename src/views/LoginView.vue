@@ -45,7 +45,7 @@ export default {
                             class="text-input" />
                         <input required type="password" v-model="this.password" placeholder="Password"
                             class="text-input" />
-                        <MainButton @click="this.handleLogin" label="Log in" />
+                        <MainButton @click.prevent="this.handleLogin" label="Log in" />
                     </form>
                 </div>
             </div>

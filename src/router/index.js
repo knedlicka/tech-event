@@ -61,11 +61,12 @@ export const routePaths = {
     },
   },
   organizersAdmin: {
-    name: 'organizersAdmin',
+    name: 'organizers',
     path: '/admin/organizers',
     component: OrganizersAdminView,
     meta: {
       requiresAuth: true,
+      requiresOrganizer: true,
     },
   },
   participantsAdmin: {
@@ -74,6 +75,7 @@ export const routePaths = {
     component: ParticipantsAdminView,
     meta: {
       requiresAuth: true,
+      requiresOrganizer: true,
     },
   },
   notificationsAdmin: {
@@ -82,6 +84,7 @@ export const routePaths = {
     component: NotificationsAdminView,
     meta: {
       requiresAuth: true,
+      requiresOrganizer: true,
     },
   },
   ticketsAdmin: {
@@ -90,6 +93,7 @@ export const routePaths = {
     component: TicketsAdminView,
     meta: {
       requiresAuth: true,
+      requiresOrganizer: true,
     },
   },
 }
@@ -103,6 +107,8 @@ router.beforeEach((to, from, next) => {
   const userStore = useUserStore()
   if (userStore.isLoggedIn && [routePaths.register.path, routePaths.login.path].includes(to.path)) {
     next(routePaths.home.path)
+  } else if (to.meta.requiresOrganizer && userStore?.currentUser?.role !== 'organizer') {
+    next(routePaths.login.path)
   } else if (to.meta.requiresAuth && !userStore.isLoggedIn) {
     next(routePaths.login.path)
   } else {

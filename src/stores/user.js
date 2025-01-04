@@ -66,8 +66,24 @@ export const useUserStore = defineStore('user', {
           'Server-Side Rendering with Next.js',
           'Cloud-Native CI/CD Pipelines',
         ],
-        role: 'participant',
+        role: 'organizer',
         profilePicture: 'src/assets/images/profile-photo-1.jpeg',
+      },
+      {
+        name: 'Organizer First',
+        email: 'organizer.first@gmail.com',
+        password: '123',
+        ticketName: 'regular',
+        talkTitles: [],
+        role: 'organizer',
+      },
+      {
+        name: 'Organizer Second',
+        email: 'organizer.second@gmail.com',
+        password: '123',
+        ticketName: 'regular',
+        talkTitles: [],
+        role: 'organizer',
       },
     ],
   }),
@@ -75,8 +91,14 @@ export const useUserStore = defineStore('user', {
     isLoggedIn: (state) => state.currentUser !== undefined,
   },
   actions: {
+    getByEmail(email) {
+      return this.users.find((user) => user.email === email)
+    },
     getByLoginCredentials(email, password) {
       return this.users.find((user) => user.email === email && user.password === password)
+    },
+    deleteByEmail(email) {
+      this.users = this.users.filter((user) => user.email !== email)
     },
     logout() {
       this.currentUser = undefined

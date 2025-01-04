@@ -48,7 +48,13 @@ export default {
     },
     computed: {
         menuItems() {
-            return this.userStore.isLoggedIn ? this.loggedInMenuItems : this.notLoggedInMenuItems
+            const isOrganizer = this.userStore.currentUser?.role === 'organizer';
+            const accessibleAdminMenuItems = isOrganizer ? [routePaths.organizersAdmin] : [];
+            let allLoggedInMenuItems = [...this.loggedInMenuItems];
+            if (isOrganizer) {
+                allLoggedInMenuItems = [...accessibleAdminMenuItems, ...this.loggedInMenuItems];
+            }
+            return this.userStore.isLoggedIn ? allLoggedInMenuItems : this.notLoggedInMenuItems
         },
     },
     methods: {
