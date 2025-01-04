@@ -34,6 +34,7 @@ export default {
     flex-direction: column;
     opacity: 0.5;
     color: black;
+    overflow-x: scroll;
 }
 
 .schedule-table-header {
@@ -42,6 +43,7 @@ export default {
     font-weight: 700;
     text-transform: uppercase;
     color: white;
+    min-width: 800px;
 }
 
 @media (max-width: 700px) {

@@ -51,6 +51,7 @@ export default {
 <style>
 .schedule-table-row-container {
     position: relative;
+    min-width: 800px;
 }
 
 .schedule-table-row-content {
