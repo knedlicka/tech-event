@@ -4,16 +4,24 @@ export const useTicketStore = defineStore('ticket', {
   state: () => ({
     types: [
       {
+        name: 'no_ticket',
+        priceUsd: '0',
+        extraFeatures: [],
+      },
+      {
         name: 'regular',
-        priceEuro: '90',
+        priceUsd: '90',
         extraFeatures: [],
       },
       {
         name: 'vip',
-        priceEur: '220',
+        priceUsd: '220',
         extraFeatures: ['meeting speakers', 'all-day catering'],
       },
     ],
   }),
+  getters: {
+    paidTypes: (state) => state.types.filter((ticketInfo) => ticketInfo.priceUsd !== '0'),
+  },
   persist: true,
 })

@@ -5,7 +5,7 @@
     <footer class="footer-container">
         <span>Tech Event</span>
         <span>Web Programming I</span>
-        <span>© Nadiya Balanchuk 2024</span>
+        <span>© Nadiya Balanchuk 2024 - 2025</span>
     </footer>
 </template>
 

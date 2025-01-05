@@ -2,11 +2,14 @@
 import { routePaths } from '@/router';
 import CalendarIcon from '../assets/images/svg/calendar.svg';
 import ClickableCard from '@/components/clickable-card/ClickableCard.vue';
+import TicketsBox from '@/components/tickets-box/TicketsBox.vue';
+import { useUserStore } from '@/stores/user';
 
 export default {
-  components: { CalendarIcon, ClickableCard },
+  components: { CalendarIcon, ClickableCard, TicketsBox },
   data() {
     return {
+      userStore: useUserStore(),
       cards: [
         {
           label: "Program",
@@ -42,6 +45,7 @@ export default {
       <ClickableCard v-for="(card, index) in this.cards" :label="card.label" :key="`card-${index}`"
         @click="() => handleCardClick(card)" />
     </div>
+    <TicketsBox v-if="this.userStore.isLoggedIn && !this.userStore.isOrganizer" />
   </main>
 </template>
 

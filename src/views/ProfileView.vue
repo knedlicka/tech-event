@@ -2,9 +2,10 @@
 import { useUserStore } from '@/stores/user';
 import { useProgramStore } from '@/stores/program';
 import TalksList from '@/components/talks-list/TalksList.vue';
+import MainButton from '@/components/buttons/MainButton.vue';
 
 export default {
-    components: { TalksList },
+    components: { TalksList, MainButton },
     data() {
         return {
             userStore: useUserStore(),
@@ -17,6 +18,12 @@ export default {
             ],
         };
     },
+    methods: {
+        handleReturnTicket() {
+            this.userStore.returnTicket();
+            alert('You returned the ticket successfully. You money will be refunded in 7 days.');
+        },
+    },
 }
 </script>
 
@@ -28,7 +35,10 @@ export default {
             <p></p>
             <div class="info-container">
                 <div v-for="fieldInfo in displayFields" class="info-entry">
-                    <b>{{ fieldInfo.label }}:</b> {{ userStore.currentUser[fieldInfo.key] }}
+                    <b>{{ fieldInfo.label }}:</b> {{ this.userStore.currentUser[fieldInfo.key] }}
+                </div>
+                <div v-if="this.userStore.currentUser.ticketName !== 'no_ticket'">
+                    <MainButton @click.prevent="this.handleReturnTicket" label="Return ticket" />
                 </div>
             </div>
             <TalksList :talks="userStore.currentUser.talkTitles.map(talkTitle => programStore.getTalk(talkTitle))" />

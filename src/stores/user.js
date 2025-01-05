@@ -8,7 +8,7 @@ export const useUserStore = defineStore('user', {
         name: 'Joseph Koch',
         email: 'joseph.koch@gmail.com',
         password: '123',
-        ticketName: 'regular',
+        ticketName: 'no_ticket',
         talkTitles: [
           'Machine Learning Interpretability',
           'Big-O Complexity Demystified',
@@ -32,7 +32,7 @@ export const useUserStore = defineStore('user', {
         name: 'Valibucent Hroch',
         email: 'valibucent.hroch@gmail.com',
         password: '123',
-        ticketName: 'regular',
+        ticketName: 'no_ticket',
         talkTitles: [
           'Introduction to Rust Programming',
           'Serverless Architecture Explained',
@@ -45,7 +45,7 @@ export const useUserStore = defineStore('user', {
         name: 'Halalaj Lopuch',
         email: 'halalaj@lopu.ch',
         password: '123',
-        ticketName: 'regular',
+        ticketName: 'no_ticket',
         talkTitles: [
           'Linear Congruence Systems',
           'Cryptography in the Age of AI',
@@ -58,7 +58,7 @@ export const useUserStore = defineStore('user', {
         name: 'test',
         email: 'test@test.com',
         password: '123',
-        ticketName: 'regular',
+        ticketName: 'no_ticket',
         talkTitles: [
           'Machine Learning Interpretability',
           'Big-O Complexity Demystified',
@@ -73,7 +73,7 @@ export const useUserStore = defineStore('user', {
         name: 'Organizer First',
         email: 'organizer.first@gmail.com',
         password: '123',
-        ticketName: 'regular',
+        ticketName: 'no_ticket',
         talkTitles: [],
         role: 'organizer',
       },
@@ -81,7 +81,7 @@ export const useUserStore = defineStore('user', {
         name: 'Organizer Second',
         email: 'organizer.second@gmail.com',
         password: '123',
-        ticketName: 'regular',
+        ticketName: 'no_ticket',
         talkTitles: [],
         role: 'organizer',
       },
@@ -89,6 +89,7 @@ export const useUserStore = defineStore('user', {
   }),
   getters: {
     isLoggedIn: (state) => state.currentUser !== undefined,
+    isOrganizer: (state) => state.currentUser?.role === 'organizer',
   },
   actions: {
     getByEmail(email) {
@@ -99,6 +100,22 @@ export const useUserStore = defineStore('user', {
     },
     deleteByEmail(email) {
       this.users = this.users.filter((user) => user.email !== email)
+    },
+    setTicket(ticketType) {
+      this.currentUser.ticketName = ticketType
+      this.users.forEach((user) => {
+        if (user.email === this.currentUser.email) {
+          user.ticketName = ticketType
+        }
+      })
+    },
+    returnTicket() {
+      this.currentUser.ticketName = 'no_ticket'
+      this.users.forEach((user) => {
+        if (user.email === this.currentUser.email) {
+          user.ticketName = 'no_ticket'
+        }
+      })
     },
     logout() {
       this.currentUser = undefined
@@ -112,7 +129,7 @@ export const useUserStore = defineStore('user', {
         name: fullName,
         email,
         password,
-        ticketName: 'regular',
+        ticketName: 'no_ticket',
         role,
         talkTitles: [],
         profilePicture: undefined,
