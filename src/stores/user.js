@@ -17,7 +17,6 @@ export const useUserStore = defineStore('user', {
           'Cloud-Native CI/CD Pipelines',
         ],
         role: 'participant',
-        profilePicture: undefined,
       },
       {
         name: 'Miliana Rubent',
@@ -26,7 +25,6 @@ export const useUserStore = defineStore('user', {
         ticketName: 'vip',
         talkTitles: ['Optimizing Embedded Linux', 'Digital Privacy in 2024'],
         role: 'participant',
-        profilePicture: undefined,
       },
       {
         name: 'Valibucent Hroch',
@@ -39,7 +37,6 @@ export const useUserStore = defineStore('user', {
           'The Future of AI Chips',
         ],
         role: 'participant',
-        profilePicture: undefined,
       },
       {
         name: 'Halalaj Lopuch',
@@ -52,7 +49,6 @@ export const useUserStore = defineStore('user', {
           'Concurrency Challenges in Embedded C',
         ],
         role: 'participant',
-        profilePicture: undefined,
       },
       {
         name: 'test',
@@ -67,7 +63,6 @@ export const useUserStore = defineStore('user', {
           'Cloud-Native CI/CD Pipelines',
         ],
         role: 'organizer',
-        profilePicture: 'src/assets/images/profile-photo-1.jpeg',
       },
       {
         name: 'Organizer First',
@@ -132,7 +127,6 @@ export const useUserStore = defineStore('user', {
         ticketName: 'no_ticket',
         role,
         talkTitles: [],
-        profilePicture: undefined,
       }
       this.users = [...this.users, newUser]
     },

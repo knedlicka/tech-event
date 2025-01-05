@@ -33,7 +33,7 @@ export default {
             <div v-if="this.ticket.extraFeatures.length === 0"></div>
 
             <div class="row-field">{{ this.ticket.name }}</div>
-            <div class="row-field">{{ this.ticket.priceUsd.toLocaleString("en-US", {
+            <div class="row-field">{{ Number(this.ticket.priceUsd).toLocaleString("en-US", {
                 style: "currency", currency: "USD",
                 maximumFractionDigits: 2
             }) }}

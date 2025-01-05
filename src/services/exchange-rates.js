@@ -1,5 +1,5 @@
 export const getExchangeRates = async () => {
-  const OPEN_EXCHANGE_RATES_APP_ID = 'b323d6dd22ab4ffd9bc3df17302e0fd6'
+  const OPEN_EXCHANGE_RATES_APP_ID = 'b323d6dd22ab4ffd9bc3df17302e0fd6' // TODO load from environment instead
   try {
     const response = await fetch(
       `https://openexchangerates.org/api/latest.json?app_id=${OPEN_EXCHANGE_RATES_APP_ID}`,

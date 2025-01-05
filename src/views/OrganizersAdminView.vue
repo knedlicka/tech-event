@@ -39,13 +39,13 @@ export default {
     <main class="container">
         <div class="inner-container">
             <div class="heading-section">Organizers admin</div>
-            <form class="invite-organizer-form">
+            <form class="invite-organizer-form" @submit.prevent="this.handleInvite">
                 <div v-if="this.error !== undefined" class="error">{{ this.error }}</div>
                 <input required class="text-input" type="text" v-model="this.newOrganizerName" placeholder="Name" />
                 <input required class="text-input" type="email" v-model="this.newOrganizerEmail" placeholder="Email" />
                 <input required class="text-input" type="password" v-model="this.newOrganizerPassword"
                     placeholder="Password" />
-                <MainButton type="secondary" @click="this.handleInvite" label="Invite organizer" />
+                <MainButton type="secondary" label="Invite organizer" />
             </form>
             <OrganizersTable />
         </div>
@@ -75,6 +75,10 @@ export default {
     display: flex;
     flex-wrap: wrap;
     gap: 4px;
+}
+
+.error {
+    width: 100%;
 }
 
 @media (max-width: 700px) {
