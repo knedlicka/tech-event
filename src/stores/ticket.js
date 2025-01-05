@@ -23,5 +23,13 @@ export const useTicketStore = defineStore('ticket', {
   getters: {
     paidTypes: (state) => state.types.filter((ticketInfo) => ticketInfo.priceUsd !== '0'),
   },
+  actions: {
+    addTicket(ticketInfo) {
+      this.types.push(ticketInfo)
+    },
+    deleteByName(name) {
+      this.types = this.types.filter((ticketInfo) => ticketInfo.name !== name)
+    },
+  },
   persist: true,
 })

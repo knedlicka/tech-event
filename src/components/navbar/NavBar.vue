@@ -49,7 +49,9 @@ export default {
     computed: {
         menuItems() {
             const isOrganizer = this.userStore.currentUser?.role === 'organizer';
-            const accessibleAdminMenuItems = isOrganizer ? [routePaths.organizersAdmin, routePaths.participantsAdmin] : [];
+            const accessibleAdminMenuItems = isOrganizer
+                ? [routePaths.organizersAdmin, routePaths.participantsAdmin, routePaths.ticketsAdmin]
+                : [];
             let allLoggedInMenuItems = [...this.loggedInMenuItems];
             if (isOrganizer) {
                 allLoggedInMenuItems = [...accessibleAdminMenuItems, ...this.loggedInMenuItems];
