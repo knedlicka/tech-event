@@ -68,6 +68,7 @@ export default {
     align-items: flex-start;
     gap: 32px;
     margin-top: 24px;
+    max-width: 100%;
 }
 
 .invite-organizer-form {

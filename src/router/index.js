@@ -70,7 +70,7 @@ export const routePaths = {
     },
   },
   participantsAdmin: {
-    name: 'participantsAdmin',
+    name: 'participants',
     path: '/admin/participants',
     component: ParticipantsAdminView,
     meta: {
@@ -79,7 +79,7 @@ export const routePaths = {
     },
   },
   notificationsAdmin: {
-    name: 'notificationsAdmin',
+    name: 'notifications',
     path: '/admin/notifications',
     component: NotificationsAdminView,
     meta: {
@@ -88,7 +88,7 @@ export const routePaths = {
     },
   },
   ticketsAdmin: {
-    name: 'ticketsAdmin',
+    name: 'tickets',
     path: '/admin/tickets',
     component: TicketsAdminView,
     meta: {

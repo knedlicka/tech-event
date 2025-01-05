@@ -31,6 +31,6 @@ export default {
 <style scoped>
 .organizers-table-header {
     grid-template-columns: 1fr 1fr 70px;
-    min-width: 270px;
+    min-width: 400px;
 }
 </style>

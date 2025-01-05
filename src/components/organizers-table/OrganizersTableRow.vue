@@ -30,7 +30,7 @@ export default {
 
 <style scoped>
 .organizers-table-row-container {
-    min-width: 270px;
+    min-width: 400px;
 }
 
 .organizers-table-row-content {
@@ -41,5 +41,6 @@ export default {
 .button-remove {
     background: orange;
     width: auto;
+    width: 90%;
 }
 </style>
