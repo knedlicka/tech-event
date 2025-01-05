@@ -14,7 +14,7 @@ export default {
             ticketType: ticketStore.paidTypes[0].name,
             currencies: ["USD", "EUR", "GBP", "CAD"],
             currency: "USD",
-            exchangeRates: {},
+            exchangeRates: undefined,
         }
     },
     created() {
@@ -29,8 +29,8 @@ export default {
     computed: {
         price() {
             const ticketData = this.ticketStore.paidTypes.find(ticketInfo => ticketInfo.name === this.ticketType);
-            if (!ticketData || !Object.keys(this.exchangeRates).includes(this.currency)) {
-                return "?";
+            if (!ticketData || !Object.keys(this.exchangeRates ?? {}).includes(this.currency)) {
+                return "loading";
             }
             const convertedPrice = ticketData.priceUsd * this.exchangeRates[this.currency];
             return convertedPrice.toLocaleString("en-US", { style: "currency", currency: this.currency, maximumFractionDigits: 2 })
