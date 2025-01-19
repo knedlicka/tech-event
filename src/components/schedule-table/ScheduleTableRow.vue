@@ -12,7 +12,7 @@ export default {
     },
     methods: {
         handleRegistration() {
-            if (this.currentUserRegistered) {
+            if (!this.currentUserRegistered) {
                 this.userStore.registerForTalk(this.title);
             } else {
                 this.userStore.unregisterFromTalk(this.title);
