@@ -1,5 +1,7 @@
 export const RANDOM_PHOTOS_COUNT = 9
 
+export const pointsPerDay = 10
+
 export const program = [
   {
     dayTitle: '28th January',

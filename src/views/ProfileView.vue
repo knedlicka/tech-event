@@ -3,6 +3,7 @@ import { useUserStore } from '@/stores/user';
 import { useProgramStore } from '@/stores/program';
 import TalksList from '@/components/talks-list/TalksList.vue';
 import MainButton from '@/components/buttons/MainButton.vue';
+import { pointsPerDay } from '@/constants/settings.js';
 
 export default {
     components: { TalksList, MainButton },
@@ -19,6 +20,9 @@ export default {
         };
     },
     methods: {
+        pointsPerDay() {
+            return pointsPerDay;
+        },
         handleReturnTicket() {
             this.userStore.returnTicket();
             alert('You returned the ticket successfully. You money will be refunded in 7 days.');
@@ -36,6 +40,9 @@ export default {
             <div class="info-container">
                 <div v-for="fieldInfo in displayFields" class="info-entry">
                     <b>{{ fieldInfo.label }}:</b> {{ this.userStore.currentUser[fieldInfo.key] }}
+                </div>
+                <div>
+                    <b>Points:</b> {{ this.userStore.currentUser.pointsClaimedOn.length * pointsPerDay() }}
                 </div>
                 <div v-if="this.userStore.currentUser.ticketName !== 'no_ticket'">
                     <MainButton @click.prevent="this.handleReturnTicket" label="Return ticket" />

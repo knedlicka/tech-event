@@ -12,6 +12,7 @@ import ParticipantsAdminView from '@/views/ParticipantsAdminView.vue'
 import NotificationsAdminView from '@/views/NotificationsAdminView.vue'
 import TicketsAdminView from '@/views/TicketsAdminView.vue'
 import { useUserStore } from '@/stores/user'
+import NotificationsView from '@/views/NotificationsView.vue'
 
 export const routePaths = {
   home: {
@@ -52,6 +53,14 @@ export const routePaths = {
     path: '/register',
     component: RegisterView,
   },
+  notifications: {
+    name: 'notifications',
+    path: '/notifications',
+    component: NotificationsView,
+    meta: {
+      requiresAuth: true,
+    },
+  },
   profile: {
     name: 'profile',
     path: '/profile',
@@ -79,7 +88,7 @@ export const routePaths = {
     },
   },
   notificationsAdmin: {
-    name: 'notifications',
+    name: 'notifications-admin',
     path: '/admin/notifications',
     component: NotificationsAdminView,
     meta: {

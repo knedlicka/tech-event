@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { shallowMount } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 import ScheduleTableRow from '@/components/schedule-table/ScheduleTableRow.vue';
 
 vi.mock('@/stores/user', () => {
@@ -22,7 +22,7 @@ describe('ScheduleTableRow', () => {
   const id = 'talk-1';
 
   beforeEach(() => {
-    wrapper = shallowMount(ScheduleTableRow, {
+    wrapper = mount(ScheduleTableRow, {
       props: { time, title, speaker, room, id },
     });
   });

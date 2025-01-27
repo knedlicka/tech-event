@@ -9,6 +9,7 @@ export const useUserStore = defineStore('user', {
         email: 'joseph.koch@gmail.com',
         password: '123',
         ticketName: 'no_ticket',
+        pointsClaimedOn: [],
         talkTitles: [
           'Machine Learning Interpretability',
           'Big-O Complexity Demystified',
@@ -23,6 +24,7 @@ export const useUserStore = defineStore('user', {
         email: 'miliana.rubent@gmail.com',
         password: '123',
         ticketName: 'vip',
+        pointsClaimedOn: [],
         talkTitles: ['Optimizing Embedded Linux', 'Digital Privacy in 2024'],
         role: 'participant',
       },
@@ -31,6 +33,7 @@ export const useUserStore = defineStore('user', {
         email: 'valibucent.hroch@gmail.com',
         password: '123',
         ticketName: 'no_ticket',
+        pointsClaimedOn: [],
         talkTitles: [
           'Introduction to Rust Programming',
           'Serverless Architecture Explained',
@@ -43,6 +46,7 @@ export const useUserStore = defineStore('user', {
         email: 'halalaj@lopu.ch',
         password: '123',
         ticketName: 'no_ticket',
+        pointsClaimedOn: [],
         talkTitles: [
           'Linear Congruence Systems',
           'Cryptography in the Age of AI',
@@ -55,6 +59,7 @@ export const useUserStore = defineStore('user', {
         email: 'test@test.com',
         password: '123',
         ticketName: 'no_ticket',
+        pointsClaimedOn: [],
         talkTitles: [
           'Machine Learning Interpretability',
           'Big-O Complexity Demystified',
@@ -69,6 +74,7 @@ export const useUserStore = defineStore('user', {
         email: 'organizer.first@gmail.com',
         password: '123',
         ticketName: 'no_ticket',
+        pointsClaimedOn: [],
         talkTitles: [],
         role: 'organizer',
       },
@@ -77,6 +83,7 @@ export const useUserStore = defineStore('user', {
         email: 'organizer.second@gmail.com',
         password: '123',
         ticketName: 'no_ticket',
+        pointsClaimedOn: [],
         talkTitles: [],
         role: 'organizer',
       },
@@ -159,6 +166,19 @@ export const useUserStore = defineStore('user', {
     },
     isRegisteredForTalk(talkTitle) {
       return (this.currentUser?.talkTitles ?? []).includes(talkTitle)
+    },
+    claimPoints() {
+      const todaysDateStr = new Date().toJSON().slice(0, 10)
+      this.currentUser.pointsClaimedOn.push(todaysDateStr)
+      this.users = this.users.map((userInfo) => {
+        if (userInfo.email === this.currentUser.email) {
+          return {
+            ...userInfo,
+            pointsClaimedOn: [...userInfo.pointsClaimedOn, todaysDateStr],
+          }
+        }
+        return userInfo
+      })
     },
   },
   persist: true,

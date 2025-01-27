@@ -1,20 +1,20 @@
 <script>
-import { useTicketStore } from '@/stores/ticket';
-import { useUserStore } from '@/stores/user';
-import MainButton from '@/components/buttons/MainButton.vue';
-import { getExchangeRates } from '@/services/exchange-rates.js';
+import { useTicketStore } from '@/stores/ticket'
+import { useUserStore } from '@/stores/user'
+import MainButton from '@/components/buttons/MainButton.vue'
+import { getExchangeRates } from '@/services/exchange-rates.js'
 
 export default {
     components: { MainButton },
     data() {
-        const ticketStore = useTicketStore();
+        const ticketStore = useTicketStore()
         return {
             userStore: useUserStore(),
             ticketStore: ticketStore,
             ticketType: ticketStore.paidTypes[0].name,
-            currencies: ["USD", "EUR", "GBP", "CAD"],
-            currency: "USD",
-            exchangeRates: undefined,
+            currencies: ['USD', 'EUR', 'GBP', 'CAD'],
+            currency: 'USD',
+            exchangeRates: undefined
         }
     },
     created() {
@@ -22,21 +22,25 @@ export default {
     },
     methods: {
         handleBuy() {
-            this.userStore.setTicket(this.ticketType);
-            alert("You bought a ticket successfully");
-        },
+            this.userStore.setTicket(this.ticketType)
+            alert('You bought a ticket successfully')
+        }
     },
     computed: {
         price() {
-            const ticketData = this.ticketStore.paidTypes.find(ticketInfo => ticketInfo.name === this.ticketType);
+            const ticketData = this.ticketStore.paidTypes.find(ticketInfo => ticketInfo.name === this.ticketType)
             if (!ticketData || !Object.keys(this.exchangeRates ?? {}).includes(this.currency)) {
-                return "loading";
+                return 'loading'
             }
-            const convertedPrice = ticketData.priceUsd * this.exchangeRates[this.currency];
-            return convertedPrice.toLocaleString("en-US", { style: "currency", currency: this.currency, maximumFractionDigits: 2 })
+            const convertedPrice = ticketData.priceUsd * this.exchangeRates[this.currency]
+            return convertedPrice.toLocaleString('en-US', {
+                style: 'currency',
+                currency: this.currency,
+                maximumFractionDigits: 2
+            })
         },
         extraFeatures() {
-            return this.ticketStore.types.find(ticketInfo => ticketInfo.name === this.ticketType)?.extraFeatures ?? [];
+            return this.ticketStore.types.find(ticketInfo => ticketInfo.name === this.ticketType)?.extraFeatures ?? []
         }
     }
 }
@@ -44,38 +48,46 @@ export default {
 
 <template>
     <div class="tickets-box">
-        <div class="tickets-title">Buy a ticket</div>
-        <form class="ticket-form">
-            <label for="ticket-type">Ticket type:</label>
-            <select name="ticket-type" required v-model="this.ticketType" class="select-input">
-                <option v-for="knownTicketType of this.ticketStore.paidTypes" :value="knownTicketType.name">
-                    {{ knownTicketType.name }}
-                </option>
-            </select>
-
-            <label for="currency">Currency: </label>
-            <select name="currency" required v-model="this.currency" class="select-input">
-                <option v-for="currency of this.currencies">
-                    {{ currency }}
-                </option>
-            </select>
-
-            <div class="form-divider"></div>
-
-            <div v-if="this.extraFeatures.length > 0">
-                <b>Extra features of <i>{{ this.ticketType }}</i> ticket:</b>
-                <ul>
-                    <li v-for="feature of this.extraFeatures">
-                        <span class="feature">{{ feature }}</span>
-                    </li>
-                </ul>
+        <div v-if="this.userStore.currentUser?.ticketName !== 'no_ticket'" class="return-ticket-content">
+            <div>
+                <strong>Your ticket: </strong><span>{{ this.userStore.currentUser?.ticketName }}</span>
             </div>
-            <div class="total-container">
-                <span>Total:</span>
-                <span>{{ this.price }}</span>
-            </div>
-            <MainButton @click.prevent="this.handleBuy" label="Buy ticket" />
-        </form>
+            <MainButton @click.prevent="this.userStore.returnTicket()" label="Return" />
+        </div>
+        <div v-if="this.userStore.currentUser?.ticketName === 'no_ticket'" class="tickets-box-content-container">
+            <div class="tickets-title">Buy a ticket</div>
+            <form class="ticket-form">
+                <label for="ticket-type">Ticket type:</label>
+                <select name="ticket-type" required v-model="this.ticketType" class="select-input">
+                    <option v-for="knownTicketType of this.ticketStore.paidTypes" :value="knownTicketType.name">
+                        {{ knownTicketType.name }}
+                    </option>
+                </select>
+
+                <label for="currency">Currency: </label>
+                <select name="currency" required v-model="this.currency" class="select-input">
+                    <option v-for="currency of this.currencies">
+                        {{ currency }}
+                    </option>
+                </select>
+
+                <div class="form-divider"></div>
+
+                <div v-if="this.extraFeatures.length > 0">
+                    <b>Extra features of <i>{{ this.ticketType }}</i> ticket:</b>
+                    <ul>
+                        <li v-for="feature of this.extraFeatures">
+                            <span class="feature">{{ feature }}</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="total-container">
+                    <span>Total:</span>
+                    <span>{{ this.price }}</span>
+                </div>
+                <MainButton @click.prevent="this.handleBuy" label="Buy ticket" />
+            </form>
+        </div>
     </div>
 </template>
 
@@ -92,6 +104,13 @@ export default {
     padding: 20px;
     gap: 8px;
     margin-bottom: 20px;
+}
+
+.tickets-box-content-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
 }
 
 .tickets-box:hover {
@@ -123,5 +142,11 @@ export default {
 
 .feature {
     text-transform: capitalize;
+}
+
+.return-ticket-content {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 }
 </style>

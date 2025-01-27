@@ -1,13 +1,14 @@
 <script>
 import ScheduleTable from '@/components/schedule-table/ScheduleTable.vue';
-import { program } from '../constants/settings';
+import { useProgramStore } from '@/stores/program.js'
 
 
 export default {
     components: { ScheduleTable },
     data() {
+        const programStore = useProgramStore();
         return {
-            programByDays: program,
+            programByDays: programStore.program,
         }
     }
 };

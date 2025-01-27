@@ -7,8 +7,9 @@
         </div>
         <div class="nav-half" v-if="!this.isMobile">
             <div class="menu-link-container" v-for="menuItem of this.menuItems" :key="menuItem.name">
-                <RouterLink :class="this.$route.path === menuItem.path ? 'active' : ''" :to="menuItem.path">{{
-                    menuItem.name }}</RouterLink>
+                <RouterLink :class="this.$route.path === menuItem.path ? 'active' : ''" :to="menuItem.path">
+                    {{ menuItem.name }}
+                </RouterLink>
             </div>
             <div v-if="this.userStore.isLoggedIn" class="menu-link-container" @click="this.handleLogout"><a>Log out</a>
             </div>
@@ -24,8 +25,9 @@
             :key="menuItem.name">
             <RouterLink :to="menuItem.path">{{ menuItem.name }}</RouterLink>
         </div>
-        <div v-if="this.userStore.isLoggedIn" class="expanded-menu-link-container" @click="this.handleLogout"><a>Log
-                out</a></div>
+        <div v-if="this.userStore.isLoggedIn" class="expanded-menu-link-container" @click="this.handleLogout">
+            <a>Log out</a>
+        </div>
     </div>
 </template>
 
@@ -36,11 +38,11 @@ import { useUserStore } from '@/stores/user';
 export default {
     data() {
         const userStore = useUserStore();
-        const loggedInMenuItems = [routePaths.home, routePaths.program, routePaths.speakers, routePaths.profile];
+        const loggedInMenuItems = [routePaths.home, routePaths.program, routePaths.speakers, routePaths.profile, routePaths.notifications];
         const notLoggedInMenuItems = [routePaths.home, routePaths.program, routePaths.speakers, routePaths.login];
         return {
             userStore: userStore,
-            isMobile: window.innerWidth <= 600,
+            isMobile: window.innerWidth <= 1000,
             showMenu: false,
             loggedInMenuItems: loggedInMenuItems,
             notLoggedInMenuItems: notLoggedInMenuItems,
@@ -50,7 +52,7 @@ export default {
         menuItems() {
             const isOrganizer = this.userStore.currentUser?.role === 'organizer';
             const accessibleAdminMenuItems = isOrganizer
-                ? [routePaths.organizersAdmin, routePaths.participantsAdmin, routePaths.ticketsAdmin]
+                ? [routePaths.organizersAdmin, routePaths.participantsAdmin, routePaths.ticketsAdmin, routePaths.notificationsAdmin]
                 : [];
             let allLoggedInMenuItems = [...this.loggedInMenuItems];
             if (isOrganizer) {
@@ -61,7 +63,7 @@ export default {
     },
     methods: {
         handleResize() {
-            this.isMobile = window.innerWidth <= 600;
+            this.isMobile = window.innerWidth <= 1000;
         },
         toggleMenu() {
             this.showMenu = !this.showMenu;

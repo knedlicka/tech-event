@@ -1,11 +1,13 @@
 <script>
 export default {
-    props: ['label', 'type']
+    props: ['label', 'type', 'disabled']
 }
 </script>
 
 <template>
-    <button :class="`main-button ${this.type === 'secondary' ? 'secondary-button' : ''}`">
+    <button
+        :class="`main-button ${this.type === 'secondary' ? 'secondary-button' : ''} ${this.disabled ? 'button-disabled' : ''}`"
+        :disabled="this.disabled">
         {{ this.label }}
     </button>
 </template>
@@ -21,12 +23,17 @@ export default {
     cursor: pointer;
 }
 
-.main-button:hover {
+.main-button:hover:not(.button-disabled) {
     box-shadow: none;
     transform: translate(1px, 1px);
 }
 
 .secondary-button {
     background: rgb(0, 99, 230);
+}
+
+.button-disabled {
+    background: #414150;
+    box-shadow: none;
 }
 </style>
